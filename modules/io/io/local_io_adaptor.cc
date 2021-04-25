@@ -333,7 +333,7 @@ Status LocalIOAdaptor::ReadPartialTable(std::shared_ptr<arrow::Table>* table,
   std::shared_ptr<arrow::csv::TableReader> reader;
 #if defined(ARROW_VERSION) && ARROW_VERSION >= 4000000
   RETURN_ON_ARROW_ERROR_AND_ASSIGN(
-      reader, arrow::csv::TableReader::Make(arrow::io::AsyncContext(pool),
+      reader, arrow::csv::TableReader::Make(arrow::io::IOContext(pool),
                                             input, read_options, parse_options,
                                             convert_options));
 #else
